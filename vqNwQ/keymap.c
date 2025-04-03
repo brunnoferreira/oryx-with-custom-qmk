@@ -527,7 +527,7 @@ void dance_7_finished(tap_dance_state_t *state, void *user_data) {
     dance_state[7].step = dance_step(state);
     switch (dance_state[7].step) {
         case SINGLE_TAP: register_code16(KC_MINUS); break;
-        case DOUBLE_TAP: SEND_STRING(SS_TAP(X_MINUS)SS_DELAY(100)  SS_LSFT(SS_TAP(X_DOT))); break;
+        case DOUBLE_TAP: SEND_STRING(SS_TAP(X_MINUS)SS_DELAY(25)  SS_LSFT(SS_TAP(X_DOT))); break;
         case DOUBLE_SINGLE_TAP: tap_code16(KC_MINUS); register_code16(KC_MINUS);
     }
 }
