@@ -102,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 const uint16_t PROGMEM combo0[] = { KC_LEFT, KC_DOWN, KC_RIGHT, COMBO_END};
-const uint16_t PROGMEM combo1[] = { MT(MOD_LCTL, KC_A), MT(MOD_RCTL, KC_SCLN), COMBO_END};
+const uint16_t PROGMEM combo1[] = { TD(DANCE_1), TD(DANCE_3), COMBO_END};
 const uint16_t PROGMEM combo2[] = { LT(2,KC_ENTER), LT(1,KC_TAB), COMBO_END};
 const uint16_t PROGMEM combo3[] = { LT(6,KC_BSPC), LT(4,KC_SPACE), COMBO_END};
 const uint16_t PROGMEM combo4[] = { KC_LCBR, KC_RCBR, COMBO_END};
@@ -323,7 +323,7 @@ void dance_1_finished(tap_dance_state_t *state, void *user_data) {
     switch (dance_state[1].step) {
         case SINGLE_TAP: register_code16(KC_F); break;
         case SINGLE_HOLD: register_code16(KC_LEFT_SHIFT); break;
-        case DOUBLE_TAP: register_code16(KC_CAPS); break;
+        case DOUBLE_TAP: register_code16(CW_TOGG); break;
         case DOUBLE_SINGLE_TAP: tap_code16(KC_F); register_code16(KC_F);
     }
 }
@@ -390,7 +390,7 @@ void dance_3_finished(tap_dance_state_t *state, void *user_data) {
     switch (dance_state[3].step) {
         case SINGLE_TAP: register_code16(KC_J); break;
         case SINGLE_HOLD: register_code16(KC_RIGHT_SHIFT); break;
-        case DOUBLE_TAP: register_code16(KC_CAPS); break;
+        case DOUBLE_TAP: register_code16(CW_TOGG); break;
         case DOUBLE_SINGLE_TAP: tap_code16(KC_J); register_code16(KC_J);
     }
 }
