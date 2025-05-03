@@ -9,7 +9,7 @@
 #define NO_AUTO_SHIFT_TAB
 #define NO_AUTO_SHIFT_ALPHA
 #define CAPS_LOCK_STATUS
-#define SERIAL_NUMBER "vqNwQ/dPaqEn"
+#define SERIAL_NUMBER "vqNwQ/zLrR6O"
 #define LAYER_STATE_16BIT
 #define COMBO_COUNT 6
 #define HCS(report) host_consumer_send(record->event.pressed ? report : 0); return false
