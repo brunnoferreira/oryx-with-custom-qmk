@@ -412,27 +412,6 @@ void on_dance_4(tap_dance_state_t *state, void *user_data) {
         tap_code16(KC_EXLM);
     }
 }
-
-void dance_2_finished(tap_dance_state_t *state, void *user_data) {
-    dance_state[2].step = dance_step(state);
-    switch (dance_state[2].step) {
-        case SINGLE_TAP: register_code16(KC_EXLM); break;
-        case SINGLE_HOLD: register_code16(KC_LEFT_CTRL); break;
-        case DOUBLE_TAP: register_code16(KC_EXLM); register_code16(KC_EXLM); break;
-        case DOUBLE_SINGLE_TAP: tap_code16(KC_EXLM); register_code16(KC_EXLM);
-    }
-}
-
-void dance_2_reset(tap_dance_state_t *state, void *user_data) {
-    wait_ms(10);
-    switch (dance_state[2].step) {
-        case SINGLE_TAP: unregister_code16(KC_EXLM); break;
-        case SINGLE_HOLD: unregister_code16(KC_LEFT_CTRL); break;
-        case DOUBLE_TAP: unregister_code16(KC_EXLM); break;
-        case DOUBLE_SINGLE_TAP: unregister_code16(KC_EXLM); break;
-    }
-    dance_state[2].step = 0;
-}
 void on_dance_3(tap_dance_state_t *state, void *user_data);
 void dance_3_finished(tap_dance_state_t *state, void *user_data);
 void dance_3_reset(tap_dance_state_t *state, void *user_data);
