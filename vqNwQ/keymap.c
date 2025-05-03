@@ -101,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 const uint16_t PROGMEM combo0[] = { KC_LEFT, KC_DOWN, KC_RIGHT, COMBO_END};
-const uint16_t PROGMEM combo1[] = { TD(DANCE_1), TD(DANCE_3), COMBO_END};
+const uint16_t PROGMEM combo1[] = { MT(MOD_LSFT, KC_F), MT(MOD_RSFT, KC_J), COMBO_END};
 const uint16_t PROGMEM combo2[] = { LT(2,KC_ENTER), LT(1,KC_TAB), COMBO_END};
 const uint16_t PROGMEM combo3[] = { LT(6,KC_BSPC), LT(4,KC_SPACE), COMBO_END};
 const uint16_t PROGMEM combo4[] = { KC_LCBR, KC_RCBR, COMBO_END};
