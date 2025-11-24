@@ -35,15 +35,15 @@ enum tap_dance_codes {
   DANCE_10,
 };
 
-#define DUAL_FUNC_0 LT(3, KC_6)
-#define DUAL_FUNC_1 LT(1, KC_9)
-#define DUAL_FUNC_2 LT(6, KC_B)
-#define DUAL_FUNC_3 LT(10, KC_U)
-#define DUAL_FUNC_4 LT(1, KC_F6)
-#define DUAL_FUNC_5 LT(3, KC_2)
-#define DUAL_FUNC_6 LT(2, KC_F4)
-#define DUAL_FUNC_7 LT(11, KC_5)
-#define DUAL_FUNC_8 LT(11, KC_4)
+#define DUAL_FUNC_0 LT(8, KC_F18)
+#define DUAL_FUNC_1 LT(9, KC_I)
+#define DUAL_FUNC_2 LT(4, KC_2)
+#define DUAL_FUNC_3 LT(11, KC_A)
+#define DUAL_FUNC_4 LT(14, KC_F17)
+#define DUAL_FUNC_5 LT(13, KC_N)
+#define DUAL_FUNC_6 LT(10, KC_3)
+#define DUAL_FUNC_7 LT(7, KC_M)
+#define DUAL_FUNC_8 LT(1, KC_9)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
@@ -112,6 +112,7 @@ const uint16_t PROGMEM combo3[] = { LT(6, KC_BSPC), LT(4, KC_SPACE), COMBO_END};
 const uint16_t PROGMEM combo4[] = { KC_LCBR, KC_RCBR, COMBO_END};
 const uint16_t PROGMEM combo5[] = { KC_H, KC_G, COMBO_END};
 const uint16_t PROGMEM combo6[] = { MT(MOD_LGUI, KC_D), MT(MOD_RGUI, KC_K), COMBO_END};
+const uint16_t PROGMEM combo7[] = { KC_H, MT(MOD_RSFT, KC_J), COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, KC_TAB),
@@ -121,6 +122,7 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo4, ST_MACRO_5),
     COMBO(combo5, KC_CAPS),
     COMBO(combo6, LALT(LGUI(LCTL(LSFT(KC_SPACE))))),
+    COMBO(combo7, KC_MINUS),
 };
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
@@ -197,12 +199,12 @@ typedef struct {
 } tap;
 
 enum {
-    SINGLE_TAP = 1,
-    SINGLE_HOLD,
-    DOUBLE_TAP,
-    DOUBLE_HOLD,
-    DOUBLE_SINGLE_TAP,
-    MORE_TAPS
+    SINGLE_TAP = 1,      
+    SINGLE_HOLD,         
+    DOUBLE_TAP,          
+    DOUBLE_HOLD,         
+    DOUBLE_SINGLE_TAP,   
+    MORE_TAPS            
 };
 
 static tap dance_state[11];
@@ -553,6 +555,22 @@ tap_dance_action_t tap_dance_actions[] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+  case QK_MODS ... QK_MODS_MAX: 
+    // Mouse keys with modifiers work inconsistently across operating systems, this makes sure that modifiers are always
+    // applied to the mouse key that was pressed.
+    if (IS_MOUSE_KEYCODE(QK_MODS_GET_BASIC_KEYCODE(keycode))) {
+    if (record->event.pressed) {
+        add_mods(QK_MODS_GET_MODS(keycode));
+        send_keyboard_report();
+        wait_ms(2);
+        register_code(QK_MODS_GET_BASIC_KEYCODE(keycode));
+        return false;
+      } else {
+        wait_ms(2);
+        del_mods(QK_MODS_GET_MODS(keycode));
+      }
+    }
+    break;
     case ST_MACRO_0:
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_LBRC)SS_DELAY(100)  SS_TAP(X_RBRC)SS_DELAY(100)  SS_TAP(X_LEFT));
