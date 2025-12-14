@@ -16,6 +16,7 @@ enum custom_keycodes {
   ST_MACRO_3,
   ST_MACRO_4,
   ST_MACRO_5,
+  ST_MACRO_6,
   MAC_LOCK,
 };
 
@@ -35,15 +36,15 @@ enum tap_dance_codes {
   DANCE_10,
 };
 
-#define DUAL_FUNC_0 LT(8, KC_F18)
-#define DUAL_FUNC_1 LT(9, KC_I)
-#define DUAL_FUNC_2 LT(4, KC_2)
-#define DUAL_FUNC_3 LT(11, KC_A)
-#define DUAL_FUNC_4 LT(14, KC_F17)
-#define DUAL_FUNC_5 LT(13, KC_N)
-#define DUAL_FUNC_6 LT(10, KC_3)
-#define DUAL_FUNC_7 LT(7, KC_M)
-#define DUAL_FUNC_8 LT(1, KC_9)
+#define DUAL_FUNC_0 LT(4, KC_V)
+#define DUAL_FUNC_1 LT(15, KC_J)
+#define DUAL_FUNC_2 LT(6, KC_F16)
+#define DUAL_FUNC_3 LT(2, KC_Z)
+#define DUAL_FUNC_4 LT(3, KC_F8)
+#define DUAL_FUNC_5 LT(7, KC_H)
+#define DUAL_FUNC_6 LT(8, KC_L)
+#define DUAL_FUNC_7 LT(11, KC_F3)
+#define DUAL_FUNC_8 LT(14, KC_H)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
@@ -72,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     TD(DANCE_5),    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, TD(DANCE_7),    
-                                                    KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
+                                                    LT(6, KC_BSPC), KC_TRANSPARENT,                                 KC_TRANSPARENT, LT(4, KC_SPACE)
   ),
   [4] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
@@ -113,6 +114,7 @@ const uint16_t PROGMEM combo4[] = { KC_LCBR, KC_RCBR, COMBO_END};
 const uint16_t PROGMEM combo5[] = { KC_H, KC_G, COMBO_END};
 const uint16_t PROGMEM combo6[] = { MT(MOD_LGUI, KC_D), MT(MOD_RGUI, KC_K), COMBO_END};
 const uint16_t PROGMEM combo7[] = { KC_H, MT(MOD_RSFT, KC_J), COMBO_END};
+const uint16_t PROGMEM combo8[] = { LT(4, KC_SPACE), LT(6, KC_BSPC), COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, KC_TAB),
@@ -123,6 +125,7 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo5, KC_CAPS),
     COMBO(combo6, LALT(LGUI(LCTL(LSFT(KC_SPACE))))),
     COMBO(combo7, KC_MINUS),
+    COMBO(combo8, ST_MACRO_6),
 };
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
@@ -599,6 +602,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case ST_MACRO_5:
     if (record->event.pressed) {
       SEND_STRING(SS_LSFT(SS_TAP(X_9))SS_DELAY(100)  SS_LSFT(SS_TAP(X_0))SS_DELAY(100)  SS_TAP(X_SPACE)SS_DELAY(100)  SS_LSFT(SS_TAP(X_LBRC))SS_DELAY(100)  SS_LSFT(SS_TAP(X_RBRC)));
+    }
+    break;
+    case ST_MACRO_6:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LGUI(SS_LSFT(SS_TAP(X_V)))SS_DELAY(100)  SS_TAP(X_V)SS_DELAY(100)  SS_TAP(X_ENTER));
     }
     break;
     case MAC_LOCK:
