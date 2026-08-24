@@ -9,9 +9,9 @@
 #define NO_AUTO_SHIFT_TAB
 #define NO_AUTO_SHIFT_ALPHA
 #define CAPS_LOCK_STATUS
-#define SERIAL_NUMBER "vqNwQ/rbAY74"
+#define SERIAL_NUMBER "vqNwQ/AzmQXG"
 #define LAYER_STATE_16BIT
-#define COMBO_COUNT 9
+#define COMBO_COUNT 11
 #define HCS(report) host_consumer_send(record->event.pressed ? report : 0); return false
 
 #define TAPPING_TERM_PER_KEY
