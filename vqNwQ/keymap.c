@@ -36,15 +36,15 @@ enum tap_dance_codes {
   DANCE_10,
 };
 
-#define DUAL_FUNC_0 LT(10, KC_F10)
-#define DUAL_FUNC_1 LT(2, KC_Z)
-#define DUAL_FUNC_2 LT(12, KC_1)
-#define DUAL_FUNC_3 LT(2, KC_I)
-#define DUAL_FUNC_4 LT(15, KC_V)
-#define DUAL_FUNC_5 LT(15, KC_F19)
-#define DUAL_FUNC_6 LT(4, KC_F14)
-#define DUAL_FUNC_7 LT(5, KC_F20)
-#define DUAL_FUNC_8 LT(14, KC_F10)
+#define DUAL_FUNC_0 LT(12, KC_F6)
+#define DUAL_FUNC_1 LT(5, KC_F4)
+#define DUAL_FUNC_2 LT(7, KC_M)
+#define DUAL_FUNC_3 LT(15, KC_L)
+#define DUAL_FUNC_4 LT(12, KC_Q)
+#define DUAL_FUNC_5 LT(5, KC_F7)
+#define DUAL_FUNC_6 LT(1, KC_6)
+#define DUAL_FUNC_7 LT(11, KC_R)
+#define DUAL_FUNC_8 LT(3, KC_F2)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
@@ -115,8 +115,8 @@ const uint16_t PROGMEM combo5[] = { KC_H, KC_G, COMBO_END};
 const uint16_t PROGMEM combo6[] = { MT(MOD_LGUI, KC_D), MT(MOD_RGUI, KC_K), COMBO_END};
 const uint16_t PROGMEM combo7[] = { KC_H, MT(MOD_RSFT, KC_J), COMBO_END};
 const uint16_t PROGMEM combo8[] = { LT(4, KC_SPACE), KC_BSPC, COMBO_END};
-const uint16_t PROGMEM combo9[] = { MT(MOD_LGUI, KC_D), MT(MOD_LSFT, KC_F), COMBO_END};
-const uint16_t PROGMEM combo10[] = { MT(MOD_RSFT, KC_J), MT(MOD_RGUI, KC_K), COMBO_END};
+const uint16_t PROGMEM combo9[] = { MT(MOD_LGUI, KC_D), MT(MOD_LSFT, KC_F), MT(MOD_RSFT, KC_J), COMBO_END};
+const uint16_t PROGMEM combo10[] = { MT(MOD_RSFT, KC_J), MT(MOD_RGUI, KC_K), MT(MOD_LSFT, KC_F), COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, KC_TAB),
